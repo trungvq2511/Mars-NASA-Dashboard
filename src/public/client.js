@@ -67,20 +67,19 @@ function roverOnClick(button) {
         })
 }
 
-function renderHoverDetail(state) {
+function renderHoverDetail(images) {
     const body = document.querySelector('#body');
-    console.log(body);
+    console.log(images);
+    images = images.slice(0, 5);
     body.innerHTML = `
         <div id="roverDetails">
-            ${renderHoverInfo(state)}
+            ${renderHoverInfo(images)}
+            ${renderHoverImages(images)}
         </div>
     `
 }
 
-// Get first 5 rovers
-function renderHoverInfo(state) {
-    console.log(state);
-    const images = state.slice(0, 5);
+function renderHoverInfo(images) {
     return `            
             <table>
                 <tr>
@@ -104,5 +103,14 @@ function renderHoverInfo(state) {
                     <td>${images.slice(-1).pop().earth_date}</td>
                 </tr>
             </table>
+        `;
+}
+
+function renderHoverImages(images) {
+    return images.map(image => {
+        console.log(image.img_src)
+        return `
+            <img src="${image.img_src}"/>    
         `
+    });
 }
