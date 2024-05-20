@@ -72,7 +72,7 @@ button:hover {
   height: 200px;
 }
 
-#curiosity-img, #opportunity-img, #perseverance-img {
+#curiosity-img, #opportunity-img, #spirit-img {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -88,7 +88,7 @@ button:hover {
   background-image: url('https://solarsystem.nasa.gov/system/content_pages/main_images/1057_1057_rover2_768.jpg');
 }
 
-#perseverance-img {
+#spirit-img {
   background-image: url('https://www.nasa.gov/wp-content/uploads/2023/03/rover_drop.jpg');
 }
 

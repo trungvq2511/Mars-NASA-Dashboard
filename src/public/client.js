@@ -1,8 +1,8 @@
-let store = {
-    user: {name: "Student"},
+let store = Immutable.Map({
+    user: Immutable.Map({name: "Student"}),
     apod: '',
     rovers: ['Curiosity', 'Opportunity', 'Spirit'],
-}
+})
 
 // add our markup to the page
 const root = document.getElementById('root')
@@ -24,7 +24,8 @@ const App = (state) => {
     return `
         <header></header>
         <main>
-            ${Greeting(store.user.name)}
+            ${Greeting((store.get('user')).get('name'))}
+            ${renderRoversButton()}
         </main>
         <footer></footer>
     `
@@ -35,9 +36,6 @@ window.addEventListener('load', () => {
     render(root, store)
 })
 
-// ------------------------------------------------------  COMPONENTS
-
-// Pure function that renders conditional information -- THIS IS JUST AN EXAMPLE, you can delete it.
 const Greeting = (name) => {
     if (name) {
         return `
@@ -50,43 +48,19 @@ const Greeting = (name) => {
     `
 }
 
-// Example of a pure function that renders infomation requested from the backend
-const ImageOfTheDay = (apod) => {
+const renderRoversButton = () => {
+    const rovers = () => store.get("rovers");
+    return rovers().map(rover => {
+        return `<div class = rover>
+        <button type="button" id="${rover.toLowerCase()}" href=${rover} onclick="roverOnClick(${rover.toLowerCase()})"><img id='${rover.toLowerCase()}-img'><h2>${rover}</h2></img></button>
+        </div>
+        `;
+    }).join(" ");
+};
 
-    // If image does not already exist, or it is not from today -- request it again
-    const today = new Date()
-    const photodate = new Date(apod.date)
-    console.log(photodate.getDate(), today.getDate());
-
-    console.log(photodate.getDate() === today.getDate());
-    if (!apod || apod.date === today.getDate()) {
-        getImageOfTheDay(store)
-    }
-
-    // check if the photo of the day is actually type video!
-    if (apod.media_type === "video") {
-        return (`
-            <p>See today's featured video <a href="${apod.url}">here</a></p>
-            <p>${apod.title}</p>
-            <p>${apod.explanation}</p>
-        `)
-    } else {
-        return (`
-            <img src="${apod.image.url}" height="350px" width="100%" />
-            <p>${apod.image.explanation}</p>
-        `)
-    }
-}
-
-// ------------------------------------------------------  API CALLS
-
-// Example API call
-const getImageOfTheDay = (state) => {
-    let {apod} = state
-
-    fetch(`http://localhost:3000/apod`)
-        .then(res => res.json())
-        .then(apod => updateStore(store, {apod}))
-
-    return data
+async function roverOnClick(button) {
+    // const roverId = button.id;
+    // let rover = fetch(`http://localhost:3000/rover/${roverId}`)
+    //     .then(res => res.json());
+    // console.log('rover',rover);
 }
