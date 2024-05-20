@@ -81,15 +81,15 @@ button:hover {
 }
 
 #curiosity-img {
-  background-image: url('https://mars.nasa.gov/internal_resources/585/');
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/05/Curiosity_-_The_Next_Mars_Rover.jpg');
 }
 
 #opportunity-img {
-  background-image: url('https://solarsystem.nasa.gov/system/content_pages/main_images/1057_1057_rover2_768.jpg');
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d8/NASA_Mars_Rover.jpg');
 }
 
 #spirit-img {
-  background-image: url('https://www.nasa.gov/wp-content/uploads/2023/03/rover_drop.jpg');
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e6/Spirit_Rover_Model.jpg');
 }
 
 img {

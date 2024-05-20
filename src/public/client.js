@@ -6,6 +6,7 @@ let store = Immutable.Map({
 
 // add our markup to the page
 const root = document.getElementById('root')
+const body = document.querySelector('#body');
 
 const updateStore = (store, newState) => {
     store = Object.assign(store, newState)
@@ -51,11 +52,12 @@ const Greeting = (name) => {
 const renderRoversButton = () => {
     const rovers = () => store.get("rovers");
     return rovers().map(rover => {
-        return `<div class = rover>
-        <button type="button" id="${rover.toLowerCase()}" href=${rover} onclick="roverOnClick(${rover.toLowerCase()})"><img id='${rover.toLowerCase()}-img'><h2>${rover}</h2></img></button>
-        </div>
+        return `
+            <div class = rover>
+                <button type="button" id="${rover.toLowerCase()}" href=${rover} onclick="roverOnClick(${rover.toLowerCase()})"><img id='${rover.toLowerCase()}-img'><h2>${rover}</h2></img></button>
+            </div>
         `;
-    }).join(" ");
+    }).join(' ');
 };
 
 function roverOnClick(button) {
@@ -68,7 +70,6 @@ function roverOnClick(button) {
 }
 
 function renderHoverDetail(images) {
-    const body = document.querySelector('#body');
     console.log(images);
     images = images.slice(0, 5);
     body.innerHTML = `
@@ -81,28 +82,28 @@ function renderHoverDetail(images) {
 
 function renderHoverInfo(images) {
     return `            
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <td>${images[0].rover.name}</td>
-                </tr>
-                <tr>
-                    <th>Launch date</th>
-                    <td>${images[0].rover.launch_date}</td>
-                </tr>
-                <tr>
-                    <th>Landing date</th>
-                    <td>${images[0].rover.landing_date}</td>
-                </tr>
-                <tr>
-                    <th>Status</th>
-                    <td>${images[0].rover.status}</td>
-                </tr>
-                <tr>
-                    <th>Most recent photos taken on</th>
-                    <td>${images.slice(-1).pop().earth_date}</td>
-                </tr>
-            </table>
+        <table>
+            <tr>
+                <th>Name</th>
+                <td>${images[0].rover.name}</td>
+            </tr>
+            <tr>
+                <th>Launch date</th>
+                <td>${images[0].rover.launch_date}</td>
+            </tr>
+            <tr>
+                <th>Landing date</th>
+                <td>${images[0].rover.landing_date}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>${images[0].rover.status}</td>
+            </tr>
+            <tr>
+                <th>Most recent photos taken on</th>
+                <td>${images.slice(-1).pop().earth_date}</td>
+            </tr>
+        </table>
         `;
 }
 
@@ -112,5 +113,5 @@ function renderHoverImages(images) {
         return `
             <img src="${image.img_src}"/>    
         `
-    });
+    }).join(' ');
 }
