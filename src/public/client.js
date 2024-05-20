@@ -81,13 +81,28 @@ function renderHoverDetail(state) {
 function renderHoverInfo(state) {
     console.log(state);
     const images = state.slice(0, 5);
-    return images.map(image => {
-        return (`
-          <p>${image.rover.name}</p>
-          <p>${image.rover.launch_date}</p>
-          <p>${image.rover.landing_date}</p>
-          <p>${image.rover.status}</p>
-          <p>${images.slice(-1).pop().earth_date}</p>
-        `)
-    })
+    return `            
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td>${images[0].rover.name}</td>
+                </tr>
+                <tr>
+                    <th>Launch date</th>
+                    <td>${images[0].rover.launch_date}</td>
+                </tr>
+                <tr>
+                    <th>Landing date</th>
+                    <td>${images[0].rover.landing_date}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>${images[0].rover.status}</td>
+                </tr>
+                <tr>
+                    <th>Most recent photos taken on</th>
+                    <td>${images.slice(-1).pop().earth_date}</td>
+                </tr>
+            </table>
+        `
 }
