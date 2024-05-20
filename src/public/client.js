@@ -58,9 +58,36 @@ const renderRoversButton = () => {
     }).join(" ");
 };
 
-async function roverOnClick(button) {
-    // const roverId = button.id;
-    // let rover = fetch(`http://localhost:3000/rover/${roverId}`)
-    //     .then(res => res.json());
-    // console.log('rover',rover);
+function roverOnClick(button) {
+    const roverId = button.id;
+    fetch(`http://localhost:3000/rover/${roverId}`)
+        .then(res => res.json())
+        .then(data => {
+            renderHoverDetail(data.latest_photos);
+        })
+}
+
+function renderHoverDetail(state) {
+    const body = document.querySelector('#body');
+    console.log(body);
+    body.innerHTML = `
+        <div id="roverDetails">
+            ${renderHoverInfo(state)}
+        </div>
+    `
+}
+
+// Get first 5 rovers
+function renderHoverInfo(state) {
+    console.log(state);
+    const images = state.slice(0, 5);
+    return images.map(image => {
+        return (`
+          <p>${image.rover.name}</p>
+          <p>${image.rover.launch_date}</p>
+          <p>${image.rover.landing_date}</p>
+          <p>${image.rover.status}</p>
+          <p>${images.slice(-1).pop().earth_date}</p>
+        `)
+    })
 }
