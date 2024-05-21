@@ -20,9 +20,7 @@ const render = async (root, state) => {
 
 
 // create content
-const App = (state) => {
-    let {rovers, apod} = state
-
+const App = () => {
     return `
         <header></header>
         <main>

@@ -108,23 +108,12 @@ th {
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {
   /* use mobile */
-  main nav {
-    flex-direction: row;
-    margin: 0px 15px;
-  }
 }
 
 /* -------------------  DESKTOP  -------------------- */
 
 @media (min-width: 1224px) {
   /* use mobile */
-  #content {
-    /*display: grid;*/
-    grid-template-rows: auto;
-    grid-template-areas:
-    "txt"
-    "photo";
-  }
 
   #roverDetails {
     grid-area: txt;
@@ -133,8 +122,6 @@ th {
     line-height: 1.5rem;
     grid-template-columns: repeat(12, 1fr);
     grid-template-areas: ". details details details details info info info info info info .";
-    /*display: grid;*/
     align-items: center;
   }
 }
-
