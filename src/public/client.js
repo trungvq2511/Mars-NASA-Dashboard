@@ -5,12 +5,13 @@ let store = Immutable.Map({
 })
 
 // add our markup to the page
-const root = document.getElementById('root')
-const body = document.querySelector('#body');
+const rootElement = document.getElementById('root')
+const hoverSummaryElement = document.querySelector('#hoverSummary');
+const hoverImagesElement = document.querySelector('#hoverImages');
 
 const updateStore = (store, newState) => {
     store = Object.assign(store, newState)
-    render(root, store)
+    render(rootElement, store)
 }
 
 const render = async (root, state) => {
@@ -66,17 +67,21 @@ function roverOnClick(button) {
         .then(res => res.json())
         .then(data => {
             renderHoverDetail(data.latest_photos);
+            renderHoverImages(data.latest_photos);
         })
 }
 
+// Get 4 hovers
 function renderHoverDetail(images) {
     console.log(images);
-    images = images.slice(0, 5);
-    body.innerHTML = `
+    images = images.slice(0, 4);
+    hoverSummaryElement.innerHTML = `
         <div id="roverDetails">
             ${renderHoverInfo(images)}
-            ${renderHoverImages(images)}
         </div>
+    `
+    hoverImagesElement.innerHTML = `
+        ${renderHoverImages(images)}
     `
 }
 

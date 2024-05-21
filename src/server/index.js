@@ -26,4 +26,4 @@ app.get('/rover/:name', async (req, res) => {
     }
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Mars NASA Dashboard app listening on port ${port}!`))
